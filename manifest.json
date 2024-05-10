@@ -1,0 +1,8 @@
+{
+    "manifest_version": 3,
+    "name": "TestRail Plus",
+    "version": "1.0.1",
+    "icons": {
+        "32": "./assets/icons/icon.png"
+    }
+}
