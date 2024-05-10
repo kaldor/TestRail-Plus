@@ -14,9 +14,9 @@ const injectLinksToDOM = () => {
       for (const mutation of mutationList) {
         var injectToElement = document.querySelector("div.details-in-qpane")
         if (injectToElement && mutation.type === "childList" && !injected) {
+          observer.disconnect();
           injected = true
           injectToElement.parentElement.insertBefore(linksToOtherSuites, injectToElement)
-          observer.disconnect();
           break
         }
       }
@@ -28,7 +28,7 @@ const injectLinksToDOM = () => {
   // Try inserting it in the TestRail full screen view
   const fullScreenViewElement = document.querySelector("div.content-breadcrumb")
   if (fullScreenViewElement) {
-    var injectToElement = document.querySelector("div.io-container.io-framed")
+    var injectToElement = document.querySelector("div.io-container.io-frame")
     injectToElement.parentElement.insertBefore(linksToOtherSuites, injectToElement)
     console.log('Injected in containerFullScreenView YAYYY')
     return
