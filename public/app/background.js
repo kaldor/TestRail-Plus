@@ -1,9 +1,9 @@
 async function onPageLoad() {
   // ===== Constants ======
-  const {link, email, token} = await chrome.storage.local.get(["link", "email", "token"])
-  
+  const { link, email, token } = await chrome.storage.local.get(["link", "email", "token"])
+
   const suiteList = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
-  
+
   // ===== Helper Functions =====
   const isEmptyObject = (object) => {
     return Object.keys(object).length === 0
@@ -39,6 +39,9 @@ async function onPageLoad() {
           'Authorization': 'Basic ' + btoa(`${email}:${token}`)
         }
       })
+
+      console.log('API Response: ', testcaseResponse)
+
       if (!testcaseResponse.ok) {
         throw 'API error: ' + testcaseResponse.text()
       }
@@ -56,32 +59,20 @@ async function onPageLoad() {
 
     // Find foreign case by title
     try {
-      const foreignCaseResponse = await fetch(link + `api/v2/get_cases/${suite.project_id}&suite_id=${suite.suite_id}&filter=${currentCase.title}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': 'Basic ' + btoa(`${email}:${token}`)
-        }
-      })
+      // Remove all non-character when searching, TestRail not good at this
+      const currentCaseTitleQuery = currentCase.title.replace('+', '%2B').replace('&', '%26')
 
-      console.log(foreignCaseResponse)
+      const query = `get_cases/${suite.project_id}&suite_id=${suite.suite_id}&filter=${currentCaseTitleQuery}`
+      const result = await fetchTestRailAPI(query)
 
-      // Fetch Foreign case failed
-      if (!foreignCaseResponse.ok) {
-        const result = await foreignCaseResponse.text()
-        console.log(result)
-        throw result
-      }
-
-      const casesJson = await foreignCaseResponse.json()
-      console.log('Foreign Json: ', casesJson)
-      const casesResult = casesJson.cases
+      console.log('Foreign Json: ', result)
+      const casesResult = result.cases
       console.log('Foreign case candidates: ', casesResult)
 
       // If no matches
       if (casesResult.length === 0) {
         alert('Cannot find match')
-        return null
+        throw 'Cannot find match'
       }
 
       // If only one matches
