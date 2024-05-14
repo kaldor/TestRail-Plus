@@ -1,11 +1,10 @@
-function onPageLoad() {
+async function onPageLoad() {
   // ===== Constants ======
-  const TESTRAIL_LINK = "TESTRAILLINK"
+  const {link, email, token} = await chrome.storage.local.get(["link", "email", "token"])
 
-  const EMAIL = "EMAIL"
-  const PASSWORD = "PASSWORD"
-
-  const EDIT_DISTANCE_ALLOWANCE = 5
+  const isEmptyObject = (object) => {
+    return Object.keys(object).length === 0
+  }
 
   const suiteList = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
 
@@ -32,11 +31,11 @@ function onPageLoad() {
 
   const fetchTestRailAPI = async (apiPath) => {
     try {
-      const testcaseResponse = await fetch(TESTRAIL_LINK + `api/v2/${apiPath}`, {
+      const testcaseResponse = await fetch(link + `api/v2/${apiPath}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': 'Basic ' + btoa(`${EMAIL}:${PASSWORD}`)
+          'Authorization': 'Basic ' + btoa(`${email}:${token}`)
         }
       })
       if (!testcaseResponse.ok) {
@@ -55,11 +54,11 @@ function onPageLoad() {
 
     // Find foreign case by title
     try {
-      const foreignCaseResponse = await fetch(TESTRAIL_LINK + `api/v2/get_cases/${suite.project_id}&suite_id=${suite.suite_id}&filter=${currentCase.title}`, {
+      const foreignCaseResponse = await fetch(link + `api/v2/get_cases/${suite.project_id}&suite_id=${suite.suite_id}&filter=${currentCase.title}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': 'Basic ' + btoa(`${EMAIL}:${PASSWORD}`)
+          'Authorization': 'Basic ' + btoa(`${email}:${token}`)
         }
       })
 
@@ -136,6 +135,14 @@ function onPageLoad() {
 
   const openForeignCase = async (suite, currentCase) => {
     var foreignCase
+
+    // Check if the account is set up
+    if (isEmptyObject(link) || isEmptyObject(email) || isEmptyObject(token)) {
+      const notSetUpErrorMessage = "Please set up your email, token and testrail link in the extension pop up."
+      alert(notSetUpErrorMessage)
+      return
+    }
+
     try {
       foreignCase = await fetchForeignCase(suite, currentCase)
       console.log('Foreign case: ', foreignCase)
@@ -143,7 +150,7 @@ function onPageLoad() {
       alert('Fetch operation failed: ' + error)
     }
     const { id } = foreignCase
-    const foreignCaseLink = TESTRAIL_LINK + "cases/view/" + id
+    const foreignCaseLink = link + "cases/view/" + id
     window.open(foreignCaseLink, "_blank");
   }
 
@@ -191,7 +198,7 @@ function onPageLoad() {
         if (injectLinkToCaseNumber) {
           const idLink = document.createElement("a")
           idLink.id = "injectedIdLink"
-          idLink.href = TESTRAIL_LINK + "cases/view/" + currentCaseId
+          idLink.href = link + "cases/view/" + currentCaseId
           idLink.textContent = 'C' + currentCaseId
           idLink.classList.add("nolink")
 
@@ -255,6 +262,8 @@ function onPageLoad() {
 
   injectTestRail()
 }
+
+
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if (changeInfo.status != "complete" || !tab.url || tab.url == "chrome://newtab") {
