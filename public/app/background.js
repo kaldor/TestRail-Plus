@@ -1,14 +1,14 @@
 async function onPageLoad() {
   // ===== Constants ======
   const {link, email, token} = await chrome.storage.local.get(["link", "email", "token"])
-
+  
+  const suiteList = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
+  
+  // ===== Helper Functions =====
   const isEmptyObject = (object) => {
     return Object.keys(object).length === 0
   }
 
-  const suiteList = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
-
-  // ===== Helper Functions =====
   const editDistance = (s, t) => {
     if (!s.length) return t.length;
     if (!t.length) return s.length;
@@ -29,6 +29,7 @@ async function onPageLoad() {
     return arr[t.length][s.length];
   };
 
+  // Use TestRail API Helper Function
   const fetchTestRailAPI = async (apiPath) => {
     try {
       const testcaseResponse = await fetch(link + `api/v2/${apiPath}`, {
@@ -47,6 +48,7 @@ async function onPageLoad() {
     }
   }
 
+  // Find foreign case using TestRail API
   const fetchForeignCase = async (suite, currentCase) => {
     if (!suite || !currentCase) {
       return
@@ -133,7 +135,7 @@ async function onPageLoad() {
     }
   }
 
-  const openForeignCase = async (suite, currentCase) => {
+  const onClickForeignSuite = async (suite, currentCase) => {
     var foreignCase
 
     // Check if the account is set up
@@ -159,7 +161,7 @@ async function onPageLoad() {
     suiteList.forEach((suite) => {
       const foreignCaseElement = document.createElement("a")
       try {
-        foreignCaseElement.onclick = async () => await openForeignCase(suite, currentCase)
+        foreignCaseElement.onclick = async () => await onClickForeignSuite(suite, currentCase)
         foreignCaseElement.textContent = suite.name
         foreignCaseElement.style.marginRight = "10px";
         injectToElement.appendChild(foreignCaseElement)
@@ -169,6 +171,7 @@ async function onPageLoad() {
     })
   }
 
+  // 
   const injectAfterLoad = ({ document, parentElement, injectToElementQuery, caseIdElementQuery, caseNameElementQuery, injectLinkToCaseNumber }) => {
 
     const injectElementContainer = document.createElement("div")
@@ -227,6 +230,7 @@ async function onPageLoad() {
     observer.observe(parentElement, config);
   }
 
+  // Inject elements to TestRail Site
   const injectTestRail = () => {
     // Try inserting it in the TestRail full screen view
     const fullScreenViewElement = document.querySelector("div.content-breadcrumb")
@@ -259,6 +263,8 @@ async function onPageLoad() {
     }
 
   }
+
+  // ===== OnPageLoad Main =====
 
   injectTestRail()
 }
