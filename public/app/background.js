@@ -43,7 +43,7 @@ async function onPageLoad() {
       console.log('API Response: ', testcaseResponse)
 
       if (!testcaseResponse.ok) {
-        throw 'API error: ' + testcaseResponse.text()
+        throw await testcaseResponse.text()
       }
       return testcaseResponse.json()
     } catch (error) {
@@ -71,7 +71,6 @@ async function onPageLoad() {
 
       // If no matches
       if (casesResult.length === 0) {
-        alert('Cannot find match')
         throw 'Cannot find match'
       }
 
@@ -122,29 +121,27 @@ async function onPageLoad() {
       return bestCandidate
 
     } catch (error) {
+      alert(error)
       throw error
     }
   }
 
   const onClickForeignSuite = async (suite, currentCase) => {
-    var foreignCase
-
-    // Check if the account is set up
-    if (isEmptyObject(link) || isEmptyObject(email) || isEmptyObject(token)) {
-      const notSetUpErrorMessage = "Please set up your email, token and testrail link in the extension pop up."
-      alert(notSetUpErrorMessage)
-      return
-    }
-
     try {
-      foreignCase = await fetchForeignCase(suite, currentCase)
+      // Check if the account is set up
+      if (isEmptyObject(link) || isEmptyObject(email) || isEmptyObject(token)) {
+        const notSetUpErrorMessage = "Please set up your email, token and testrail link in the extension pop up."
+        throw notSetUpErrorMessage
+      }
+
+      const foreignCase = await fetchForeignCase(suite, currentCase)
       console.log('Foreign case: ', foreignCase)
+      const { id } = foreignCase
+      const foreignCaseLink = link + "cases/view/" + id
+      window.open(foreignCaseLink, "_blank");
     } catch (error) {
-      alert('Fetch operation failed: ' + error)
+      alert('Error: ' + error)
     }
-    const { id } = foreignCase
-    const foreignCaseLink = link + "cases/view/" + id
-    window.open(foreignCaseLink, "_blank");
   }
 
   const injectForeignTestCases = (suiteList, injectToElement, currentCase) => {
