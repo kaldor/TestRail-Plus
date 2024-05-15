@@ -10,7 +10,7 @@ Chrome Extension for supercharging the TestRail workflow
 
 # Installation
 ## Chrome
-1. Download the [Chrome Extension Folder](https://www.dropbox.com/scl/fo/jjcrqy1839v2kgc25hq9z/AAcE1XJa0ejyPeCzeqnAqxc?rlkey=ejnfspvxj6chmltfe0emiui9h&st=7w501jtz&dl=0)
+1. Download the [Chrome Extension Folder](https://www.dropbox.com/scl/fo/6fjut3exg3iwgnf241wyf/ANALisPMwtFHy9R_ZuMzv3Y?rlkey=8zut23rmjowixyqk2gcbz6lgv&st=yaklwnxo&dl=0)
 2. Go to `chrome://extensions` (i.e. Chrome extension settings)
 3. Turn on Developer mode
 4. Click `Load unpacked` and select the Chrome Extension Folder
@@ -18,7 +18,7 @@ Chrome Extension for supercharging the TestRail workflow
 6. In `This can Read and Change Site Data`, select `On *.testrail.net`
 
 ## Firefox
-1. Download the [Firefox Extension Folder](https://www.dropbox.com/scl/fo/4wgxyvtivl1nr19ozwmi0/APiLdVCK8EnX3FutLPG-_tU?rlkey=8dmne5ao9ww39s96x8vqk7u5s&st=erj7zx1g&dl=0)
+1. Download the [Firefox Extension Folder](https://www.dropbox.com/scl/fo/10nfa9uud3dyw0r4avgb0/ALwJ-0_FS2lt1Pe7-qiuhtM?rlkey=1i1y34rgqqf9dzgjbxlp8kg3y&st=n83uo1cc&dl=0)
 2. Go to `about:debugging#/runtime/this-firefox` (i.e. Firefox extension settings)
 3. At Temporary Extensions, click `Load Temporary Add-on...`
 4. Select the `manifest.json` in the Firefox Extension Folder
@@ -27,7 +27,9 @@ Chrome Extension for supercharging the TestRail workflow
 
 # Set up
 1. Click the extension icon, a pop up should appear
-2. Enter the TestRail link and press `Save`
+2. Enter the TestRail link (e.g. https://*.testrail.net/index.php?/) and press `Save`
+3. Enter your TestRail email and press `Save`
+4. Enter your token (Create in TestRail/My Settings/API Keys) and press `Save`
 
 # For Developer
 1. Run `npm run build`
