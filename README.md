@@ -14,11 +14,20 @@ Chrome Extension for supercharging the TestRail workflow
 2. Go to `chrome://extensions` (i.e. Chrome extension settings)
 3. Turn on Developer mode
 4. Click `Load unpacked` and select the Chrome Extension Folder
+5. Go to your TestRail site and Right click the extension icon
+6. In `This can Read and Change Site Data`, select `On *.testrail.net`
 
 ## Firefox
 1. Download the [Firefox Extension Folder](https://www.dropbox.com/scl/fo/4wgxyvtivl1nr19ozwmi0/APiLdVCK8EnX3FutLPG-_tU?rlkey=8dmne5ao9ww39s96x8vqk7u5s&st=erj7zx1g&dl=0)
 2. Go to `about:debugging#/runtime/this-firefox` (i.e. Firefox extension settings)
-3. Click `Debug Add-on From File...` and select the `manifest.json` in the Firefox Extension Folder
+3. At Temporary Extensions, click `Load Temporary Add-on...`
+4. Select the `manifest.json` in the Firefox Extension Folder
+5. Go to your TestRail site and Right click the extension icon
+6. In `Extension can Read and Change Data:`, select `Always allow on *.testrail.net`
+
+# Set up
+1. Click the extension icon, a pop up should appear
+2. Enter the TestRail link and press `Save`
 
 # For Developer
 1. Run `npm run build`
