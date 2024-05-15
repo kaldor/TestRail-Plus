@@ -11,13 +11,13 @@ Chrome Extension for supercharging the TestRail workflow
 # Installation
 ## Chrome
 1. Download the Chrome extension folder
-2. Go to [Chrome extension settings](chrome://extensions/)
+2. Go to `chrome://extensions` (i.e. Chrome extension settings)
 3. Turn on Developer mode
 4. Click `Load unpacked` and select the Chrome extension folder
 
 ## Firefox
 1. Download the Firefox extension folder
-2. Go to [Firefox extension settings](about:debugging#/runtime/this-firefox)
+2. Go to `about:debugging#/runtime/this-firefox` (i.e. Firefox extension settings)
 3. Click `Debug Add-on From File...` and select the `manifest.json` in the Firefox extension folder
 
 # For Developer
