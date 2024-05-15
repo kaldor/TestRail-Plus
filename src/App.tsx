@@ -39,15 +39,15 @@ function App() {
 
       <h3>TestRail Link</h3>
       <input type='url' placeholder='Enter TestRail link here...' value={link_} onChange={(event) => setLink(event.target.value)}></input>
-      <button type='submit' onClick={() => chrome.storage.local.set({link: link_})}>Change</button>
+      <button type='submit' onClick={() => chrome.storage.local.set({link: link_})}>Save</button>
 
       <h3>Email</h3>
       <input type='email' placeholder='Enter email here...' value={email_} onChange={(event) => setEmail(event.target.value)}></input>
-      <button type='submit' onClick={() => chrome.storage.local.set({email: email_})}>Change</button>
+      <button type='submit' onClick={() => chrome.storage.local.set({email: email_})}>Save</button>
 
       <h3>Token</h3>
       <input type='password' placeholder='Enter token here...' value={token_} onChange={(event) => setToken(event.target.value)}></input>
-      <button type='submit' onClick={() => chrome.storage.local.set({token: token_})}>Change</button>
+      <button type='submit' onClick={() => chrome.storage.local.set({token: token_})}>Save</button>
     </>
   )
 }
