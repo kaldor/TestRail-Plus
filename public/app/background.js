@@ -6,6 +6,9 @@ async function onPageLoad() {
 
   // ===== Helper Functions =====
   const isEmptyObject = (object) => {
+    if (!object) {
+      return true
+    }
     return Object.keys(object).length === 0
   }
 
@@ -186,7 +189,11 @@ async function onPageLoad() {
         injectElementContainer.innerHTML = ''
 
         // Inject Link to case number
-        if (injectLinkToCaseNumber) {
+        if (injectLinkToCaseNumber) { 
+          if (!link) {
+            alert('Link is undefined')
+            return
+          }
           const idLink = document.createElement("a")
           idLink.id = "injectedIdLink"
           idLink.href = link + "cases/view/" + currentCaseId
