@@ -1,4 +1,4 @@
-# TestRail-Plus
+# TestRail+
 Chrome / Firefox Extension for supercharging the TestRail workflow
 
 # Features
