@@ -44,3 +44,6 @@ The test case return follows the heuristic below:
 # For Developer
 1. Run `npm run build`
 2. Load the `dist` file to the Chrome extension settings
+
+## Manifest
+The manifest.json for Chrome and Firefox is different, use `manifest.chrome.json` for Chrome and `manifest.firefox.json` for Firefox
