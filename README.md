@@ -1,5 +1,5 @@
 # TestRail+
-Chrome / Firefox Extension for supercharging the TestRail workflow
+Chrome / Firefox Extension for supercharging the TestRail workflow.
 
 # Features
 1. Allow navigating to a similiar case in the other suites.
@@ -25,11 +25,21 @@ Chrome / Firefox Extension for supercharging the TestRail workflow
 5. Go to your TestRail site and right click the TestRail+ Extension icon in the browser
 6. In `Extension can Read and Change Data:`, select `Always allow on *.testrail.net`
 
-# Set up
+# Setup
 1. Click the extension icon, a pop up should appear
 2. Enter the TestRail link (e.g. https://*.testrail.net/index.php?/) and press `Save`
 3. Enter your TestRail email and press `Save`
 4. Enter your token (Create in TestRail/My Settings/API Keys) and press `Save`
+
+# Behind the Scene
+##  Links to Foreign test case (a similiar test case in the other suite)
+When the link is pressed, it fires a TestRail API call to find test case in the other suite with the same test case title.
+The test case return follows the heuristic below:
+1. If there is no match, return 'Cannot find match' error.
+2. If there are only one match, then return this test case.
+3. If there is only one match with the same title, then return this test case.
+3. If there are more than one match with the same title, it will try to compare their section name if still no match return the first one.
+4. If there are no match with the same title, then we compare the edit distance between cases and return the best result.
 
 # For Developer
 1. Run `npm run build`
