@@ -1,5 +1,5 @@
 # TestRail+
-A Chrome / Firefox Extension for Supercharging the TestRail Workflow. Developed During My Placement at [Pugpig](https://www.pugpig.com/) and used internally.
+Chrome / Firefox Extension for supercharging the TestRail workflow.
 
 # Features
 1. Allow navigating to a similiar case in the other suites.
@@ -29,7 +29,7 @@ A Chrome / Firefox Extension for Supercharging the TestRail Workflow. Developed 
 1. Click the extension icon, a pop up should appear
 2. Enter the TestRail link (e.g. https://*.testrail.net/index.php?/) and press `Save`
 3. Enter your TestRail email and press `Save`
-4. Enter your token ([Steps to Create Token](https://support.testrail.com/hc/en-us/articles/7665131077268-Connect-to-Jira-Cloud#generate-a-jira-cloud-api-token-0-0)) and press `Save`
+4. Enter your token (Create in TestRail/My Settings/API Keys) and press `Save`
 
 # Behind the Scene
 ##  Links to Foreign test case (a similiar test case in the other suite)
