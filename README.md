@@ -1,5 +1,5 @@
 # TestRail+
-Chrome / Firefox Extension for supercharging the TestRail workflow.
+A Chrome / Firefox Extension for Supercharging the TestRail Workflow. Developed During My Placement at [Pugpig](https://www.pugpig.com/) and used internally.
 
 # Features
 1. Allow navigating to a similiar case in the other suites.
