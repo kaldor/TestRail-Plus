@@ -63,7 +63,7 @@ async function onPageLoad() {
     // Find foreign case by title
     try {
       // Remove all non-character when searching, TestRail not good at this
-      const currentCaseTitleQuery = currentCase.title.replace('+', '%2B').replace('&', '%26')
+      const currentCaseTitleQuery = currentCase.title.replace('+', '%2B').replace('&', '%26').replace(',', '%2C')
 
       const query = `get_cases/${suite.project_id}&suite_id=${suite.suite_id}&filter=${currentCaseTitleQuery}`
       const result = await fetchTestRailAPI(query)
