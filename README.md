@@ -18,12 +18,7 @@ Chrome / Firefox Extension for supercharging the TestRail workflow.
 6. In `This can Read and Change Site Data`, select `On *.testrail.net`
 
 ## Firefox
-1. Download the [Firefox Extension Folder](https://www.dropbox.com/scl/fo/10nfa9uud3dyw0r4avgb0/ALwJ-0_FS2lt1Pe7-qiuhtM?rlkey=1i1y34rgqqf9dzgjbxlp8kg3y&st=n83uo1cc&dl=0)
-2. Go to `about:debugging#/runtime/this-firefox` (i.e. Firefox extension settings)
-3. At Temporary Extensions, click `Load Temporary Add-on...`
-4. Select the `manifest.json` in the Firefox Extension Folder
-5. Go to your TestRail site and right click the TestRail+ Extension icon in the browser
-6. In `Extension can Read and Change Data:`, select `Always allow on *.testrail.net`
+Submitting the add-on to Firefox store is free!!! So here is the [link](https://addons.mozilla.org/en-GB/firefox/addon/testrail/)
 
 # Setup
 1. Click the extension icon, a pop up should appear
