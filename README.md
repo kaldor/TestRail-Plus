@@ -2,7 +2,7 @@
 Chrome / Firefox Extension for supercharging the TestRail workflow.
 
 # Features
-1. Allow navigating to a similiar case in the other suites.
+1. Allow navigating to a similar case in the other suites.
 <img width="284" alt="Screenshot 2024-05-14 at 23 12 59" src="https://github.com/StevenChenWaiHo/TestRail-Plus/assets/122108964/88af5096-16f4-4f76-a216-04140b8a8229">
 
 2. Allow link copying in full screen view.
@@ -27,7 +27,7 @@ Submitting the add-on to Firefox store is free!!! So here is the [link](https://
 4. Enter your token (Create in TestRail/My Settings/API Keys) and press `Save`
 
 # Behind the Scene
-##  Links to Foreign test case (a similiar test case in the other suite)
+##  Links to Foreign test case (a similar test case in the other suite)
 When the link is pressed, it fires a TestRail API call to find test case in the other suite with the same test case title.
 The test case return follows the heuristic below:
 1. If there is no match, return 'Cannot find match' error.
