@@ -27,6 +27,17 @@ Submitting the add-on to Firefox store is free!!! So here is the [link](https://
 4. Enter your token (Create in TestRail/My Settings/API Keys) and press `Save`
 5. Add the test suites you want to navigate to in the `Test Suites` tab
 
+# Versions
+### v2.0.1 (Latest)
+1. Added custom suite list
+2. Fix cannot search test cases with comma
+3. Fix duplicate error alerts
+
+### v1.0.0 (deprecated)
+1. Allow linking to foreign cases
+2. Add links to case number label
+3. Only works for users in Pugpig 
+
 # Behind the Scene
 ##  Links to Foreign test case (a similar test case in the other suite)
 When the link is pressed, it fires a TestRail API call to find test case in the other suite with the same test case title.
