@@ -1,5 +1,5 @@
 # TestRail+
-Chrome / Firefox Extension for supercharging the TestRail workflow.
+A Chrome / Firefox Extension for supercharging the TestRail workflow.
 
 # Features
 1. Allow navigating to a similar case in the other suites.
