@@ -1,8 +1,6 @@
 async function onPageLoad() {
   // ===== Constants ======
-  const { link, email, token } = await chrome.storage.local.get(["link", "email", "token"])
-
-  const suiteList = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
+  const { link, email, token, suites } = await chrome.storage.local.get(["link", "email", "token", "suites"])
 
   // ===== Helper Functions =====
   const isEmptyObject = (object) => {
@@ -132,8 +130,8 @@ async function onPageLoad() {
   const onClickForeignSuite = async (suite, currentCase) => {
     try {
       // Check if the account is set up
-      if (isEmptyObject(link) || isEmptyObject(email) || isEmptyObject(token)) {
-        const notSetUpErrorMessage = "Please set up your email, token and testrail link in the extension pop up."
+      if (isEmptyObject(link) || isEmptyObject(email) || isEmptyObject(token) || isEmptyObject(suites)) {
+        const notSetUpErrorMessage = "Please set up your email, token, testrail link and the suites list in the extension pop up."
         throw notSetUpErrorMessage
       }
 
@@ -149,17 +147,21 @@ async function onPageLoad() {
 
   const injectForeignTestCases = (suiteList, injectToElement, currentCase) => {
     injectToElement.innerHTML = ''
-    suiteList.forEach((suite) => {
-      const foreignCaseElement = document.createElement("a")
-      try {
-        foreignCaseElement.onclick = async () => await onClickForeignSuite(suite, currentCase)
-        foreignCaseElement.textContent = suite.name
-        foreignCaseElement.style.marginRight = "10px";
-        injectToElement.appendChild(foreignCaseElement)
-      } catch (error) {
-        alert(error)
-      }
-    })
+    try{
+      suiteList.forEach((suite) => {
+        const foreignCaseElement = document.createElement("a")
+        try {
+          foreignCaseElement.onclick = async () => await onClickForeignSuite(suite, currentCase)
+          foreignCaseElement.textContent = suite.name
+          foreignCaseElement.style.marginRight = "10px";
+          injectToElement.appendChild(foreignCaseElement)
+        } catch (error) {
+          alert(error)
+        }
+      })
+    } catch (error) {
+      alert('Suite List not set up properly')
+    }
   }
 
   // 
@@ -205,7 +207,7 @@ async function onPageLoad() {
         }
 
         // Inject Foreign Case
-        injectForeignTestCases(suiteList, injectElementContainer, currentCase)
+        injectForeignTestCases(suites, injectElementContainer, currentCase)
       }
     }
 

@@ -25,6 +25,7 @@ Submitting the add-on to Firefox store is free!!! So here is the [link](https://
 2. Enter the TestRail link (e.g. https://*.testrail.net/index.php?/) and press `Save`
 3. Enter your TestRail email and press `Save`
 4. Enter your token (Create in TestRail/My Settings/API Keys) and press `Save`
+5. Add the test suites you want to navigate to in the `Test Suites` tab
 
 # Behind the Scene
 ##  Links to Foreign test case (a similar test case in the other suite)

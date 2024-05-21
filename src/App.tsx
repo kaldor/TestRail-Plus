@@ -26,24 +26,9 @@ function App() {
 
   // const DEFAULT_SUITELIST: Suite[] = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
 
-  const [link_, setLink] = useState("")
-  const [email_, setEmail] = useState("")
-  const [token_, setToken] = useState("")
   const [tab, setTab] = useState(0)
 
-  const firstLoad = async () => {
 
-    const { link, email, token } = isEmptyObjectReturnNull(await chrome.storage.local.get(["link", "email", "token", "suites"]))
-
-    setLink(link || "")
-    setEmail(email || "")
-    setToken(token || "")
-
-  }
-  useEffect(() => {
-    firstLoad()
-    console.log(link_, email_, token_)
-  }, [])
 
   const onChangeTab = (_event: React.SyntheticEvent, newTab: number) => {
     setTab(newTab)
@@ -58,6 +43,24 @@ function App() {
     tab,
     index
   }: TabProps) => {
+    const [link_, setLink] = useState("")
+    const [email_, setEmail] = useState("")
+    const [token_, setToken] = useState("")
+
+    const firstLoad = async () => {
+
+      const { link, email, token } = isEmptyObjectReturnNull(await chrome.storage.local.get(["link", "email", "token", "suites"]))
+
+      setLink(link || "")
+      setEmail(email || "")
+      setToken(token || "")
+
+    }
+    useEffect(() => {
+      firstLoad()
+      console.log(link_, email_, token_)
+    }, [])
+
     if (tab !== index) {
       return (<></>)
     }
@@ -133,7 +136,7 @@ function App() {
     return (
       <>
         <div></div>
-        {!addingSuite ? <h3><button onClick={() => { setAddingSuite((prev) => !prev) }}>+</button> Add Suite</h3>: <></>}
+        {!addingSuite ? <h3><button onClick={() => { setAddingSuite((prev) => !prev) }}>+</button> Add Suite</h3> : <></>}
         {addingSuite ?
           <>
             <h4>Suite Name</h4>
@@ -146,11 +149,11 @@ function App() {
             <button type='submit' onClick={() => onSubmitSuite({ name: editSuiteName, project_id: editProjectID, suite_id: editSuiteID })}>Add</button>
           </>
           : <></>}
-            <hr></hr>
+        <hr></hr>
         <List>
           {suites_.map((suite, i) => (
             <ListItem key={i}>
-              <ListItemText primary={suite.name} secondary={`Project: ${suite.project_id} Suite: ${suite.suite_id}`}/>
+              <ListItemText primary={suite.name} secondary={`Project: ${suite.project_id} Suite: ${suite.suite_id}`} />
               <button onClick={() => onRemoveSuite(i)}>Remove</button>
             </ListItem>
           ))}
