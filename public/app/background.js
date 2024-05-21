@@ -122,7 +122,6 @@ async function onPageLoad() {
       return bestCandidate
 
     } catch (error) {
-      alert(error)
       throw error
     }
   }
