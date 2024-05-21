@@ -8,6 +8,20 @@ A Chrome / Firefox Extension for supercharging the TestRail workflow.
 2. Allow link copying in full screen view.
 <img width="301" alt="Screenshot 2024-05-14 at 23 12 07" src="https://github.com/StevenChenWaiHo/TestRail-Plus/assets/122108964/9ab9f299-d75c-49c2-be26-ab145a17d872">
 
+# Table of Content
+- [Installation](#installation)
+  * [Chrome](#chrome)
+  * [Firefox](#firefox)
+- [Setup](#setup)
+- [Versions](#versions)
+- [Privacy](#privacy)
+- [For Developer](#for-developer)
+  * [Behind the Scene](#behind-the-scene)
+  * [Manifest](#manifest)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # Installation
 ## Chrome
 1. Download the [Chrome Extension Folder](https://www.dropbox.com/scl/fo/6fjut3exg3iwgnf241wyf/ANALisPMwtFHy9R_ZuMzv3Y?rlkey=8zut23rmjowixyqk2gcbz6lgv&st=yaklwnxo&dl=0)
@@ -41,8 +55,12 @@ Submitting the add-on to Firefox store is free!!! So here is the [link](https://
 # Privacy
 No data is collected, everything is stored locally on the browser.
 
-# Behind the Scene
-##  Links to Foreign test case (a similar test case in the other suite)
+# For Developer
+1. Run `npm run build`
+2. Load the `dist` file to the Chrome extension settings
+
+## Behind the Scene
+###  Links to Foreign test case (a similar test case in the other suite)
 When the link is pressed, it fires a TestRail API call to find test case in the other suite with the same test case title.
 The test case return follows the heuristic below:
 1. If there is no match, return 'Cannot find match' error.
@@ -50,10 +68,6 @@ The test case return follows the heuristic below:
 3. If there is only one match with the same title, then return this test case.
 3. If there are more than one match with the same title, it will try to compare their section name if still no match return the first one.
 4. If there are no match with the same title, then we compare the edit distance between cases and return the best result.
-
-# For Developer
-1. Run `npm run build`
-2. Load the `dist` file to the Chrome extension settings
 
 ## Manifest
 The manifest.json for Chrome and Firefox is different, use `manifest.chrome.json` for Chrome and `manifest.firefox.json` for Firefox
