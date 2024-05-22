@@ -163,7 +163,6 @@ async function onPageLoad() {
     }
   }
 
-  // 
   const injectAfterLoad = ({ document, parentElement, injectToElementQuery, caseIdElementQuery, caseNameElementQuery, injectLinkToCaseNumber }) => {
 
     const injectElementContainer = document.createElement("div")
@@ -261,7 +260,6 @@ async function onPageLoad() {
   }
 
   // ===== OnPageLoad Main =====
-
   injectTestRail()
 }
 
