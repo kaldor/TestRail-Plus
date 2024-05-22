@@ -24,11 +24,7 @@ function App() {
     suite_id: number
   }
 
-  // const DEFAULT_SUITELIST: Suite[] = [{ name: "Android", project_id: 1, suite_id: 1 }, { name: "iOS", project_id: 2, suite_id: 2 }, { name: "Web", project_id: 5, suite_id: 6 }, { name: "Timeline", project_id: 20, suite_id: 62 }]
-
   const [tab, setTab] = useState(0)
-
-
 
   const onChangeTab = (_event: React.SyntheticEvent, newTab: number) => {
     setTab(newTab)
