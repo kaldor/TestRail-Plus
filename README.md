@@ -24,15 +24,10 @@ A Chrome / Firefox Extension for supercharging the TestRail workflow.
 
 # Installation
 ## Chrome
-1. Download the [Chrome Extension Folder](https://www.dropbox.com/scl/fo/6fjut3exg3iwgnf241wyf/ANALisPMwtFHy9R_ZuMzv3Y?rlkey=8zut23rmjowixyqk2gcbz6lgv&st=yaklwnxo&dl=0)
-2. Go to `chrome://extensions` (i.e. Chrome extension settings)
-3. Turn on Developer mode
-4. Click `Load unpacked` and select the Chrome Extension Folder
-5. Go to your TestRail site and right click the TestRail+ Extension icon in the browser
-6. In `This can Read and Change Site Data`, select `On *.testrail.net`
+[Chrome Web Store Link](https://chromewebstore.google.com/detail/testrail+/jdbmodckabnjbnkpffajdiaolgfjahjd?hl=en)
 
 ## Firefox
-Submitting the add-on to Firefox store is free!!! So here is the [link](https://addons.mozilla.org/en-GB/firefox/addon/testrail/)
+[Firefox Add-on Store Link](https://addons.mozilla.org/en-GB/firefox/addon/testrail/)
 
 # Setup
 1. Click the extension icon, a pop up should appear
