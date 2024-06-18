@@ -44,7 +44,7 @@ jobs:
       run: npm run submit-chrome
     
     - name: Build extension for Firefox
-      run: npm run submit-firefox
+      run: npm run build-firefox
 
     - name: Submit to Firefox Store
       env:
