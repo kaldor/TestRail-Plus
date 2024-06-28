@@ -15,40 +15,38 @@ jobs:
   build-and-submit:
 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - name: Install dependencies
-      run: npm ci
+      - name: Check Node.js version
+        run: node --version
 
-    - name: Build extension for Chrome
-      run: npm run build-chrome
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Submit to Chrome Store
-      if: github.event_name == 'push'
-      env:
-          EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
-          CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
-          CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
-          REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
-      run: npm run submit-chrome
-    
-    - name: Build extension for Firefox
-      run: npm run build-firefox
+      - name: Build extension for Chrome
+        run: npm run build-chrome
 
-    - name: Submit to Firefox Store
-      if: github.event_name == 'push'
-      env:
-          WEB_EXT_API_KEY: ${{ secrets.FIREFOX_EXT_API_KEY }}
-          WEB_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
-      run: npm run submit-firefox
+      - name: Submit to Chrome Store
+        if: github.event_name == 'push'
+        env:
+            EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+            CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+            CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+            REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+        run: npm run submit-chrome
+      
+      - name: Build extension for Firefox
+        run: npm run build-firefox
+
+      - name: Submit to Firefox Store
+        if: github.event_name == 'push'
+        env:
+            WEB_EXT_API_KEY: ${{ secrets.FIREFOX_EXT_API_KEY }}
+            WEB_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
+        run: npm run submit-firefox
