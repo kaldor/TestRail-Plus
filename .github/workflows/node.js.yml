@@ -29,10 +29,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - run: echo "Running on tag ${GITHUB_REF/refs\/tags\//}"
+      - name: Get Current Tag
+        if: github.event_name == 'push'
+        run: echo "Running on tag ${GITHUB_REF#refs/*/}"
 
       - name: Sync manfest.json and package.json Version on Latest Tag
-        run: git fetch --tags && npm run update-version --tag="$(git describe --always --tags --abbrev=0)}"
+        if: github.event_name == 'push'
+        run: npm run update-version --tag="${GITHUB_REF#refs/*/}"
 
       - name: Build extension for Chrome
         run: npm run build-chrome
