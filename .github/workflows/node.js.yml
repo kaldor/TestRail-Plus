@@ -32,7 +32,7 @@ jobs:
       - run: echo "Running on tag ${GITHUB_REF/refs\/tags\//}"
 
       - name: Sync manfest.json and package.json Version on Latest Tag
-        run: git fetch --tags && npm run update-version --tag="$(git describe --tags --abbrev=0)}"
+        run: git fetch --tags && npm run update-version --always --tag="$(git describe --tags --abbrev=0)}"
 
       - name: Build extension for Chrome
         run: npm run build-chrome
