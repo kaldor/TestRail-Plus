@@ -95,6 +95,9 @@ jobs:
       - name: Check Chrome manifest.json
         run: cat ./build/chrome/manifest.json
 
+      - name: Install Chrome Webstore Upload CLI
+        run: npm install chrome-webstore-upload
+
       - name: Submit to Chrome Store
         env:
             EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
