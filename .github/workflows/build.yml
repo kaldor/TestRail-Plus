@@ -29,6 +29,9 @@ jobs:
       - name: Build extension for Chrome
         run: npm run build-chrome
 
+      - name: Check Chrome manifest.json
+        run: cat ./build/chrome/manifest.json
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -54,6 +57,9 @@ jobs:
 
       - name: Build extension for Firefox
         run: npm run build-firefox
+
+      - name: Check Firefox manifest.json
+        run: cat ./build/firefox/manifest.json
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
