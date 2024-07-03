@@ -13,6 +13,9 @@ dist-ssr
 build
 *.local
 
+# Manifest.json will be replaced by manifest.firefox.json and manifest.chrome.json when build
+manifest.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
