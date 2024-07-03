@@ -43,7 +43,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: built-extensions
+          name: chrome-extension-build
           path: build/chrome/**
   
   build-firefox:
@@ -77,7 +77,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: built-extensions
+          name: firefox-extension-build
           path: build/firefox/**
 
   submit-chrome:
@@ -89,7 +89,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: built-extensions
+          name: chrome-extension-build
           path: build/chrome
 
       - name: Check Chrome manifest.json
@@ -112,7 +112,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: built-extensions
+          name: firefox-extension-build
           path: build/firefox
 
       - name: Check Firefox manifest.json
