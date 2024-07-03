@@ -31,8 +31,8 @@ jobs:
       - name: Get Current Tag
         run: echo "Running on tag ${GITHUB_REF#refs/*/}"
     
-      - name: Sync manifest.json and package.json Version on Latest Tag
-        run: npm run update-version --tag="${GITHUB_REF#refs/*/}"
+      # - name: Sync manifest.json and package.json Version on Latest Tag
+      #   run: npm run update-version --tag="${GITHUB_REF#refs/*/}"
 
       - name: Build extension for Chrome
         run: npm run build-chrome
@@ -63,8 +63,8 @@ jobs:
       - name: Get Current Tag
         run: echo "Running on tag ${GITHUB_REF#refs/*/}"
     
-      - name: Sync manifest.json and package.json Version on Latest Tag
-        run: npm run update-version --tag="${GITHUB_REF#refs/*/}"
+      # - name: Sync manifest.json and package.json Version on Latest Tag
+      #   run: npm run update-version --tag="${GITHUB_REF#refs/*/}"
 
       - name: Build extension for Firefox
         run: npm run build-firefox
