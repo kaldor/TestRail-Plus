@@ -96,7 +96,7 @@ jobs:
         run: cat ./build/chrome/manifest.json
 
       - name: Install Chrome Webstore Upload CLI
-        run: npm install chrome-webstore-upload
+        run: npm install chrome-webstore-upload-cli
 
       - name: Submit to Chrome Store
         env:
