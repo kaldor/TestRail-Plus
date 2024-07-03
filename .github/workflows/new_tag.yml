@@ -8,6 +8,8 @@ on:
     branches: [ "main" ]
     tags:        
       - '*.*.*'
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-chrome:
@@ -86,8 +88,8 @@ jobs:
           name: built-extensions
           path: ./build/chrome
 
-      - name: Check Chrome Build
-        run: ls ./build/chrome
+      - name: Check Chrome manifest.json
+        run: cat ./build/chrome/manifest.json
 
       - name: Submit to Chrome Store
         env:
@@ -109,8 +111,8 @@ jobs:
           name: built-extensions
           path: ./build/firefox
 
-      - name: Check Firefox Build
-        run: ls ./build/firefox
+      - name: Check Firefox manifest.json
+        run: cat ./build/firefox/manifest.json
 
       - name: Submit to Firefox Store
         env:
