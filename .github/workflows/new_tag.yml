@@ -100,10 +100,10 @@ jobs:
 
       - name: Submit to Chrome Store
         env:
-            EXTENSION_ID: ${{ vars.CHROME_EXTENSION_ID }}
-            CLIENT_ID: ${{ vars.CHROME_CLIENT_ID }}
-            CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
-            REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+            CHROME_EXTENSION_ID: ${{ vars.CHROME_EXTENSION_ID }}
+            CHROME_CLIENT_ID: ${{ vars.CHROME_CLIENT_ID }}
+            CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+            CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
         run: npm run submit-chrome
 
   submit-firefox:
@@ -120,9 +120,12 @@ jobs:
 
       - name: Check Firefox manifest.json
         run: cat ./build/firefox/manifest.json
+      
+      - name: Install Firefox Extension Upload CLI
+        run: npm install web-ext
 
       - name: Submit to Firefox Store
         env:
-            WEB_EXT_API_KEY: ${{ vars.FIREFOX_EXT_API_KEY }}
-            WEB_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
+            FIREFOX_EXT_API_KEY: ${{ vars.FIREFOX_EXT_API_KEY }}
+            FIREFOX_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
         run: npm run submit-firefox
