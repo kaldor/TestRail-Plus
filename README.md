@@ -26,7 +26,7 @@ A Chrome / Firefox Extension for supercharging the TestRail workflow.
 
 # Installation
 ## Chrome
-[Chrome Web Store Link](https://www.dropbox.com/scl/fo/6fjut3exg3iwgnf241wyf/ANALisPMwtFHy9R_ZuMzv3Y?)
+[Chrome Web Store Link](https://chromewebstore.google.com/detail/testrail+/jdbmodckabnjbnkpffajdiaolgfjahjd?hl=en)
 
 ## Firefox
 [Firefox Add-on Store Link](https://addons.mozilla.org/en-GB/firefox/addon/testrail/)
