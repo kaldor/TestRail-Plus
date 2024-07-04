@@ -18,6 +18,8 @@ A Chrome / Firefox Extension for supercharging the TestRail workflow.
 - [For Developer](#for-developer)
   * [Behind the Scene](#behind-the-scene)
   * [Manifest](#manifest)
+  * [Build](#build)
+  * [Version Control](#version-control)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -65,4 +67,16 @@ The test case return follows the heuristic below:
 4. If there are no match with the same title, then we compare the edit distance between cases and return the best result.
 
 ## Manifest
-The manifest.json for Chrome and Firefox is different, use `manifest.chrome.json` for Chrome and `manifest.firefox.json` for Firefox
+The `manifest.json` for Chrome and Firefox is different, use `manifest.chrome.json` for Chrome and `manifest.firefox.json` for Firefox
+
+## Build
+Since the `manifest.json` for Chrome and Firefox is different, use `npm run build-chrome` or `npm run build-firefox` to build the application with their respective `manfest.json`
+
+## Version Control
+The application version is the latest Git tag with the x.x.x format.
+
+### Get Current Version
+`git describe --tags --abbrev=0`
+
+### Update Files on `manifest.json` and `package.json`
+`npm run new-version --tag=<VERSION_NUMBER>`

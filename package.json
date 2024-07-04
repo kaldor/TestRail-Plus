@@ -1,20 +1,28 @@
 {
   "name": "testrail-plus",
   "private": true,
-  "version": "0.0.0",
+  "version": "3.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "current-version": "echo $(git describe --tags --abbrev=0)",
+    "update-version": "npm --no-git-tag-version --allow-same-version version $npm_config_tag && node ./scripts/updateManifest.js $npm_config_tag",
+    "build-chrome": "cp manifest.chrome.json ./public/manifest.json && tsc && vite build && mkdir -p ./build/chrome && rm -rf ./build/chrome/* && mv ./dist/* ./build/chrome",
+    "build-firefox": "cp manifest.firefox.json ./public/manifest.json && tsc && vite build && mkdir -p ./build/firefox && rm -rf ./build/firefox/* && mv ./dist/* ./build/firefox",
+    "submit-chrome": "npx chrome-webstore-upload --source ./build/chrome --extension-id $CHROME_EXTENSION_ID --client-id $CHROME_CLIENT_ID --client-secret $CHROME_CLIENT_SECRET --refresh-token $CHROME_REFRESH_TOKEN",
+    "submit-firefox": "npx web-ext sign --channel=listed --api-key $FIREFOX_EXT_API_KEY --api-secret $FIREFOX_EXT_API_SECRET --source-dir ./build/firefox"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.18",
+    "chrome-webstore-upload-cli": "^3.3.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "web-ext": "^8.1.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.267",
