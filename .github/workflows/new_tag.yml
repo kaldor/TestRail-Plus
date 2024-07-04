@@ -129,6 +129,6 @@ jobs:
 
       - name: Submit to Firefox Store
         env:
-            FIREFOX_EXT_API_KEY: ${{ env.FIREFOX_EXT_API_KEY }}
+            FIREFOX_EXT_API_KEY: ${{ env.FIREFOX_EXT_API_KEY }}]
             FIREFOX_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
         run: npm run submit-firefox
