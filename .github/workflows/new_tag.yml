@@ -8,6 +8,8 @@ on:
     branches: [ "main" ]
     tags:        
       - '*.*.*'
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-chrome:
@@ -98,8 +100,8 @@ jobs:
 
       - name: Submit to Chrome Store
         env:
-            EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
-            CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+            EXTENSION_ID: ${{ vars.CHROME_EXTENSION_ID }}
+            CLIENT_ID: ${{ vars.CHROME_CLIENT_ID }}
             CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
             REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
         run: npm run submit-chrome
@@ -121,6 +123,6 @@ jobs:
 
       - name: Submit to Firefox Store
         env:
-            WEB_EXT_API_KEY: ${{ secrets.FIREFOX_EXT_API_KEY }}
+            WEB_EXT_API_KEY: ${{ vars.FIREFOX_EXT_API_KEY }}
             WEB_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
         run: npm run submit-firefox
