@@ -12,7 +12,7 @@
     "update-version": "npm --no-git-tag-version --allow-same-version version $npm_config_tag && node ./scripts/updateManifest.js $npm_config_tag",
     "build-chrome": "cp manifest.chrome.json ./public/manifest.json && tsc && vite build && mkdir -p ./build/chrome && rm -rf ./build/chrome/* && mv ./dist/* ./build/chrome",
     "build-firefox": "cp manifest.firefox.json ./public/manifest.json && tsc && vite build && mkdir -p ./build/firefox && rm -rf ./build/firefox/* && mv ./dist/* ./build/firefox",
-    "submit-chrome": "npx chrome-webstore-upload upload --source ./build/chrome --extension-id $CHROME_EXTENSION_ID --client-id $CHROME_CLIENT_ID --client-secret $CHROME_CLIENT_SECRET --refresh-token $CHROME_REFRESH_TOKEN",
+    "submit-chrome": "npx chrome-webstore-upload --source ./build/chrome --extension-id $CHROME_EXTENSION_ID --client-id $CHROME_CLIENT_ID --client-secret $CHROME_CLIENT_SECRET --refresh-token $CHROME_REFRESH_TOKEN",
     "submit-firefox": "npx web-ext sign --channel=listed --api-key $FIREFOX_EXT_API_KEY --api-secret $FIREFOX_EXT_API_SECRET --source-dir ./build/firefox"
   },
   "dependencies": {
