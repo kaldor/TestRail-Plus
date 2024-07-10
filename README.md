@@ -56,7 +56,7 @@ No data is collected, everything is stored locally on the browser.
 1. Run `npm run build`
 2. Load the `dist` file to the Chrome extension settings
 
-## Behind the Scene
+## Behind the Scenes
 ###  Links to Foreign test case (a similar test case in the other suite)
 When the link is pressed, it fires a TestRail API call to find test case in the other suite with the same test case title.
 The test case return follows the heuristic below:
