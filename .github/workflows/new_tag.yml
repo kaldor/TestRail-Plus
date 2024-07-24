@@ -100,8 +100,8 @@ jobs:
 
       - name: Submit to Chrome Store
         env:
-            CHROME_EXTENSION_ID: ${{ env.CHROME_EXTENSION_ID }}
-            CHROME_CLIENT_ID: ${{ env.CHROME_CLIENT_ID }}
+            CHROME_EXTENSION_ID: ${{ vars.CHROME_EXTENSION_ID }}
+            CHROME_CLIENT_ID: ${{ vars.CHROME_CLIENT_ID }}
             CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
             CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
         run: npm run submit-chrome
@@ -129,6 +129,6 @@ jobs:
 
       - name: Submit to Firefox Store
         env:
-            FIREFOX_EXT_API_KEY: ${{ env.FIREFOX_EXT_API_KEY }}
+            FIREFOX_EXT_API_KEY: ${{ vars.FIREFOX_EXT_API_KEY }}
             FIREFOX_EXT_API_SECRET: ${{ secrets.FIREFOX_EXT_API_SECRET }}
         run: npm run submit-firefox
